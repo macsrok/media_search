@@ -1,0 +1,35 @@
+<%= tag.turbo_frame id: 'container' do %>
+<div>
+  <%= link_to 'Back', movies_path(query: @query), class: 'text-blue-500', data: { turbo_frame: 'container' } %>
+</div>
+  <div class='flex flex-row w-full m-5'>
+    <div class='w-1/2 mx-1'>
+      <img src='<%= @movie.poster_url %>' class='w-full rounded' />
+    </div>
+    <div class='w-1/2 mx-1'>
+      <div class='flex flex-col'>
+        <div class='text-xl font-bold mb-5'>
+          <%= @movie.title %>
+        </div>
+        <div>
+          <%= @movie.overview %>
+        </div>
+      </div>
+      <div>
+      <div class='flex flex-row w-full mt-3'>
+        <div class='mr-3'>
+          <div class='text-sm font-bold'>Release Date</div>
+          <div><%= @movie.release_date %></div>
+        </div>
+        <div class='mx-3'>
+          <div class='text-sm font-bold'>Status</div>
+          <div><%= @movie.status %></div>
+        </div>
+        <div class='mx-3'>
+          <div class='text-sm font-bold'>Runtime</div>
+          <div><%= @movie.runtime %>&nbsp; mins.</div>
+        </div>
+      </div>
+    <div>
+  </div>
+<% end %>

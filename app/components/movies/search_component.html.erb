@@ -1,0 +1,21 @@
+<%= tag.turbo_frame id: 'container', class: 'w-full', data: { controller: 'movies' } do %>
+  <div class='flex flex-col w-full'>
+    <div class='w-4/5 ml-auto mr-auto'>
+      <%= form_with url: search_movies_path, data: { movies_target: "form", turbo_frame: "movie_search_results" }, class: 'w-full' do |form| %>
+          <%= form.text_field :query,
+            placeholder: "Search for movie",
+            value: @query,
+            class: "border border-blue-500 rounded p-2 w-full",
+            autocomplete: "off",
+            data: { action: "input->movies#search", movies_target: "query" } %>
+      <% end %>
+    </div>
+    <div class='w-4/5 ml-auto mr-auto'>
+      <%= tag.turbo_frame id: 'movie_search_results' do %>
+        <% if @movies %>
+          <%= render ::Movies::SearchResultsComponent.new(movies: @movies, query: @query) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

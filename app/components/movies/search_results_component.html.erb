@@ -1,0 +1,5 @@
+<%= tag.turbo_frame id: 'movie_search_results' do %>
+  <% @movies.each do |movie| %>
+    <%= render ::Movies::SearchResultComponent.new(movie:, query: @query) %>
+  <% end %>
+<% end %>
